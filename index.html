@@ -1,13 +1,78 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Application Tracker</title>
-</head>
-<body>
-    
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./job-favicon.png" type="image/x-icon" />
+
+    <!-- google font - geist -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Daisy UI + Tailwind Css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+      body {
+        background-color: #f8fafc;
+      }
+    </style>
+  </head>
+  <body class="w-[80%] mx-auto">
+    <!-- header section starts -->
+    <header>
+        <!-- header title -->
+      <h1 class="text-[#002C5C] text-3xl font-bold mt-12 mb-5">
+        Job Application Tracker
+      </h1>
+      <!-- header cards -->
+       <div class="header-cards flex gap-4">
+       <!-- card 1 -->
+      <div class="card bg-base-100 w-96 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-[#323B49] text-sm">Total</h2>
+          <p class="text-[#002C5C] text-2xl font-bold">8</p>
+        </div>
+      </div>
+       <!-- card 2 -->
+      <div class="card bg-base-100 w-96 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-[#323B49] text-sm">Interview</h2>
+          <p class="text-[#10B981] text-2xl font-bold">0</p>
+        </div>
+      </div>
+       <!-- card 3 -->
+      <div class="card bg-base-100 w-96 shadow-sm">
+        <div class="card-body">
+          <h2 class="card-title text-[#323B49] text-sm">Rejected</h2>
+          <p class="text-[#EF4444] text-2xl font-bold">0</p>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <hr class=" text-gray-200 my-7">
+
+    <!-- main section starts -->
+    <main>
+        
+    </main>
 
     <script src="./js/job-application.js"></script>
-</body>
+  </body>
 </html>
