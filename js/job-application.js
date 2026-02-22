@@ -37,6 +37,13 @@ function calculateCount() {
 }
 calculateCount();
 
+// available job count for all
+// available jobs counts
+const availableCount = document.createElement("p");
+availableCount.className = "text-[#64748B] text-base font-medium";
+availableCount.innerHTML = `${jobCardsSection.children.length} jobs`;
+availableJobCounts.appendChild(availableCount);
+
 // toggle button
 function toggleBtn(id) {
   // remove bluish color from all the id
@@ -68,39 +75,36 @@ function toggleBtn(id) {
   if (id == "all-toggle-btn") {
     jobCardsSection.classList.remove("hidden");
     noJobCard.classList.add("hidden");
-    filteredSection.classList.add('hidden');
+    filteredSection.classList.add("hidden");
 
     // available jobs counts
-    const availableCount = document.createElement("p");
-    ((availableCount.className = "text-[#64748B]"), "text-base", "font-medium");
+    availableCount.className = "text-[#64748B] text-base font-medium";
     availableCount.innerHTML = `${jobCardsSection.children.length} jobs`;
     availableJobCounts.appendChild(availableCount);
   } else if (id == "interview-toggle-btn") {
     jobCardsSection.classList.add("hidden");
     noJobCard.classList.remove("hidden");
-    filteredSection.classList.remove('hidden');
+    filteredSection.classList.remove("hidden");
 
     // available jobs counts
-    const availableCount = document.createElement("p");
-    ((availableCount.className = "text-[#64748B]"), "text-base", "font-medium");
+    availableCount.className = "text-[#64748B] text-base font-medium";
     availableCount.innerHTML = `${interviewList.length} of ${jobCardsSection.children.length} jobs`;
     availableJobCounts.appendChild(availableCount);
-    renderInterview();
 
+    renderInterview();
   } else if (id == "rejected-toggle-btn") {
     jobCardsSection.classList.add("hidden");
     noJobCard.classList.remove("hidden");
-    filteredSection.classList.remove('hidden');
+    filteredSection.classList.remove("hidden");
 
     // available jobs counts
-    const availableCount = document.createElement("p");
-    ((availableCount.className = "text-[#64748B]"), "text-base", "font-medium");
+    availableCount.className = "text-[#64748B] text-base font-medium";
     availableCount.innerHTML = `${rejectedList.length} of ${jobCardsSection.children.length} jobs`;
     availableJobCounts.appendChild(availableCount);
+
     renderRejected();
   }
 }
-
 
 // add event listener to main section
 // interview button
@@ -140,7 +144,6 @@ main.addEventListener("click", function (event) {
       renderRejected();
     }
     calculateCount();
-
   } else if (event.target.classList.contains("rejected-btn")) {
     const parentNode = event.target.parentNode.parentNode;
 
