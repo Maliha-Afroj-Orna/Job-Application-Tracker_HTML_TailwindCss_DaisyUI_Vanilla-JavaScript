@@ -15,6 +15,11 @@ const allToggleBtn = document.getElementById('all-toggle-btn');
 const interviewToggleBtn = document.getElementById('interview-toggle-btn');
 const rejectedToggleBtn = document.getElementById('rejected-toggle-btn');
 
+// main section select
+const main = document.getElementById('main');
+
+
+// calculate the counts
 function calculateCount() {
     totalCount.innerText = jobCardsSection.children.length;
 }
@@ -51,3 +56,9 @@ function toggleBtn(id) {
         noJobCard.classList.remove('hidden');
     }
 }
+
+// add event listener to main section
+// 
+main.addEventListener('click', function(event) {
+    console.log(event.target.parentNode);
+})
