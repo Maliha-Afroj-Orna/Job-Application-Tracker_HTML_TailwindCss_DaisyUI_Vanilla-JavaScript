@@ -46,21 +46,21 @@
         <div class="card bg-base-100 w-96 shadow-sm">
           <div class="card-body">
             <h2 class="card-title text-[#323B49] text-sm">Total</h2>
-            <p class="text-[#002C5C] text-2xl font-bold">8</p>
+            <p id="totalCount" class="text-[#002C5C] text-2xl font-bold">0</p>
           </div>
         </div>
         <!-- card 2 -->
         <div class="card bg-base-100 w-96 shadow-sm">
           <div class="card-body">
             <h2 class="card-title text-[#323B49] text-sm">Interview</h2>
-            <p class="text-[#10B981] text-2xl font-bold">0</p>
+            <p id="interviewCount" class="text-[#10B981] text-2xl font-bold">0</p>
           </div>
         </div>
         <!-- card 3 -->
         <div class="card bg-base-100 w-96 shadow-sm">
           <div class="card-body">
             <h2 class="card-title text-[#323B49] text-sm">Rejected</h2>
-            <p class="text-[#EF4444] text-2xl font-bold">0</p>
+            <p id="rejectedCount" class="text-[#EF4444] text-2xl font-bold">0</p>
           </div>
         </div>
       </div>
@@ -75,30 +75,30 @@
 
       <!-- toggle buttons -->
       <div class="btn-toggle pb-4 flex gap-2">
-        <button
+        <button onclick="toggleBtn('all-toggle-btn')" id="all-toggle-btn"
           class="bg-[#3B82F6] text-sm font-semibold text-white rounded-md px-8 py-2 cursor-pointer"
         >
           All
         </button>
-        <button
+        <button onclick="toggleBtn('interview-toggle-btn')" id="interview-toggle-btn"
           class="bg-white text-sm font-semibold text-[#64748B] rounded-md px-8 py-2 cursor-pointer border-[#F1F2F4]"
         >
           Interview
         </button>
-        <button
+        <button onclick="toggleBtn('rejected-toggle-btn')" id="rejected-toggle-btn"
           class="bg-white text-sm font-semibold text-[#64748B] rounded-md px-8 py-2 cursor-pointer border-[#F1F2F4]"
         >
           Rejected
         </button>
       </div>
 
-      <!-- job cards -->
-      <div class="job-cards space-y-4 pb-4">
+      <!-- all job cards -->
+      <div id="job-cards-section" class="job-cards space-y-4 pb-4">
         <!-- card 1 -->
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 Mobile First Corp
               </h2>
               <p class="text-[#64748B] text-base">React Native Developer</p>
@@ -133,7 +133,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 WebFlow Agency
               </h2>
               <p class="text-[#64748B] text-base">Web Designer & Developer</p>
@@ -168,7 +168,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 DataViz Solutions
               </h2>
               <p class="text-[#64748B] text-base">
@@ -205,7 +205,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 CloudFirst Inc
               </h2>
               <p class="text-[#64748B] text-base">Backend Developer</p>
@@ -240,7 +240,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 Innovation Labs
               </h2>
               <p class="text-[#64748B] text-base">UI/UX Engineer</p>
@@ -276,7 +276,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 MegaCorp Solutions
               </h2>
               <p class="text-[#64748B] text-base">JavaScript Developer</p>
@@ -312,7 +312,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 StartupXYZ
               </h2>
               <p class="text-[#64748B] text-base">Full Stack Engineer</p>
@@ -348,7 +348,7 @@
         <div class="card bg-white shadow-sm">
           <div class="card-body space-y-4">
             <div>
-              <h2 class="card-title text-[#002C5C] text-lg font-semibold">
+              <h2 class="card-title text-[#002C5C] text-lg font-semibold pb-2">
                 TechCorp Industries
               </h2>
               <p class="text-[#64748B] text-base">Senior Frontend Developer</p>
@@ -381,6 +381,22 @@
           </div>
         </div>
       </div>
+
+      <!-- interview/rejected no job card -->
+        <!-- card 1 -->
+        <div id="no-job-card" class="pb-4 hidden">
+         <div class="card bg-white shadow-sm px-10 py-14">
+          <div class="card-body">
+            <div class="w-[100px] h-[100px] mx-auto mb-4">
+                <img class="w-full" src="./jobs.png" alt="Jobs">
+            </div>
+              <h2 class="card-title text-[#002C5C] text-2xl font-semibold mx-auto">
+                No jobs available
+              </h2>
+              <p class="text-[#64748B] text-base text-center">Check back soon for new job opportunities</p>
+            </div>
+          </div>
+        </div>
     </main>
 
     <script src="./js/job-application.js"></script>
