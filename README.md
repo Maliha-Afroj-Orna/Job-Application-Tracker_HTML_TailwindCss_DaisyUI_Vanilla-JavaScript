@@ -34,11 +34,11 @@
 
 => i) Event Bubbling means an event starts from the target element and moves to it's parent element. 
    
-  ii) ( <body>
-	  <div>  
-            <button></button>
-          </div>
-        </body> )
+  ii) ```<body>
+	    <div>  
+              <button></button>
+            </div>
+         </body> ```
 	
 	-> If I click the button, first the button's event will run then the div and finally the body. (Bottom to Top)
 
