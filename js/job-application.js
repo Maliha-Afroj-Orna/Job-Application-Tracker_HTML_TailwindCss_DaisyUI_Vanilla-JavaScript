@@ -2,7 +2,7 @@
 let interviewList = [];
 let rejectedList = [];
 
-let currentStatus = "all";
+let currentStatus = "all-toggle-btn";
 
 // header count select
 let totalCount = document.getElementById("totalCount");
@@ -40,9 +40,19 @@ calculateCount();
 // available job count for all
 // available jobs counts
 const availableCount = document.createElement("p");
-availableCount.className = "text-[#64748B] text-base font-medium";
 availableCount.innerHTML = `${jobCardsSection.children.length} jobs`;
 availableJobCounts.appendChild(availableCount);
+
+function updateAvailableCount() {
+  availableCount.className = "text-[#64748B] text-base font-medium";
+  if (currentStatus == "all-toggle-btn") {
+    availableCount.innerHTML = `${jobCardsSection.children.length} jobs`;
+  } else if (currentStatus == "interview-toggle-btn") {
+    availableCount.innerHTML = `${interviewList.length} of ${jobCardsSection.children.length} jobs`;
+  } else if (currentStatus == "rejected-toggle-btn") {
+    availableCount.innerHTML = `${rejectedList.length} of ${jobCardsSection.children.length} jobs`;
+  }
+}
 
 // toggle button
 function toggleBtn(id) {
@@ -76,34 +86,28 @@ function toggleBtn(id) {
     jobCardsSection.classList.remove("hidden");
     noJobCard.classList.add("hidden");
     filteredSection.classList.add("hidden");
-
-    // available jobs counts
-    availableCount.className = "text-[#64748B] text-base font-medium";
-    availableCount.innerHTML = `${jobCardsSection.children.length} jobs`;
-    availableJobCounts.appendChild(availableCount);
   } else if (id == "interview-toggle-btn") {
+    if (interviewList.length == 0) {
+      noJobCard.classList.remove("hidden");
+    } else {
+      noJobCard.classList.add("hidden");
+    }
     jobCardsSection.classList.add("hidden");
-    noJobCard.classList.remove("hidden");
     filteredSection.classList.remove("hidden");
-
-    // available jobs counts
-    availableCount.className = "text-[#64748B] text-base font-medium";
-    availableCount.innerHTML = `${interviewList.length} of ${jobCardsSection.children.length} jobs`;
-    availableJobCounts.appendChild(availableCount);
 
     renderInterview();
   } else if (id == "rejected-toggle-btn") {
+    if (rejectedList.length == 0) {
+      noJobCard.classList.remove("hidden");
+    } else {
+      noJobCard.classList.add("hidden");
+    }
     jobCardsSection.classList.add("hidden");
-    noJobCard.classList.remove("hidden");
     filteredSection.classList.remove("hidden");
-
-    // available jobs counts
-    availableCount.className = "text-[#64748B] text-base font-medium";
-    availableCount.innerHTML = `${rejectedList.length} of ${jobCardsSection.children.length} jobs`;
-    availableJobCounts.appendChild(availableCount);
 
     renderRejected();
   }
+  updateAvailableCount();
 }
 
 // add event listener to main section
@@ -118,13 +122,13 @@ main.addEventListener("click", function (event) {
     const jobStatus = parentNode.querySelector(".job-status").innerText;
     const jobDesc = parentNode.querySelector(".job-desc").innerText;
 
-    parentNode.querySelector(".job-status").innerText = "Interview";
+    parentNode.querySelector(".job-status").innerText = "INTERVIEW";
 
     const cardInfo = {
       companyName,
       jobPosition,
       jobLocation,
-      jobStatus: "Interview",
+      jobStatus: "INTERVIEW",
       jobDesc,
     };
 
@@ -143,7 +147,9 @@ main.addEventListener("click", function (event) {
     if (currentStatus == "rejected-toggle-btn") {
       renderRejected();
     }
+
     calculateCount();
+    updateAvailableCount();
   } else if (event.target.classList.contains("rejected-btn")) {
     const parentNode = event.target.parentNode.parentNode;
 
@@ -153,13 +159,13 @@ main.addEventListener("click", function (event) {
     const jobStatus = parentNode.querySelector(".job-status").innerText;
     const jobDesc = parentNode.querySelector(".job-desc").innerText;
 
-    parentNode.querySelector(".job-status").innerText = "Rejected";
+    parentNode.querySelector(".job-status").innerText = "REJECTED";
 
     const cardInfo = {
       companyName,
       jobPosition,
       jobLocation,
-      jobStatus: "Rejected",
+      jobStatus: "REJECTED",
       jobDesc,
     };
 
@@ -180,6 +186,7 @@ main.addEventListener("click", function (event) {
     }
 
     calculateCount();
+    updateAvailableCount();
   }
 });
 
@@ -206,7 +213,7 @@ function renderInterview() {
                 ${interview.jobLocation}
               </p>
               <button
-                class="job-status text-[#002C5C] bg-[#EEF4FF] text-sm font-medium rounded-sm px-4 py-2 cursor-pointer w-[12%]"
+                class="job-status text-[#10B981] border border-[#10B981] bg-white text-sm font-medium rounded-sm px-4 py-2 cursor-pointer w-[50%] md:w-[12%]"
               >
                 ${interview.jobStatus}
               </button>
@@ -264,7 +271,7 @@ function renderRejected() {
                 ${rejected.jobLocation}
               </p>
               <button
-                class="job-status text-[#002C5C] bg-[#EEF4FF] text-sm font-medium rounded-sm px-4 py-2 cursor-pointer w-[12%]"
+                class="job-status text-[#EF4444] border border-[#EF4444] bg-white text-sm font-medium rounded-sm px-4 py-2 cursor-pointer w-[50%] md:w-[12%]"
               >
                 ${rejected.jobStatus}
               </button>
