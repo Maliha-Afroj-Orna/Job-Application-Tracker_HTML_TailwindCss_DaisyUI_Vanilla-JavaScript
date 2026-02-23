@@ -234,11 +234,6 @@ function renderInterview() {
               </div>
             </div>
             <div>
-              <button
-                class="cursor-pointer border border-[#64748b46] text-[#64748B] w-8 h-8 rounded-full mr-6 mt-8"
-              >
-                <i class="fa-regular fa-trash-can"></i>
-              </button>
             </div>
           </div>
         </div>    
@@ -292,15 +287,20 @@ function renderRejected() {
               </div>
             </div>
             <div>
-              <button
-                class="cursor-pointer border border-[#64748b46] text-[#64748B] w-8 h-8 rounded-full mr-6 mt-8"
-              >
-                <i class="fa-regular fa-trash-can"></i>
-              </button>
             </div>
           </div>
         </div>    
     `;
     filteredSection.appendChild(div);
   }
+}
+
+// delete a card
+function deleteCard(event) {
+  const card = event.target.closest(".card");
+  if (card) {
+    card.remove();
+  }
+  calculateCount();
+  updateAvailableCount();
 }
